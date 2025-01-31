@@ -7,5 +7,7 @@
     ./browsers/chromium
     ./gnome/calculator
     ./gnome/maps
+    ./nonfree/discord.nix
+    ./nonfree/spotify.nix
   ];
 }
