@@ -23,6 +23,7 @@
       {
         flake.nixosModules.default = importApply ./pkgs { localFlake = self; inherit withSystem; };
       }
+      );
   #     imports = [
   #       inputs.hercules-ci-effects.flakeModule
   #       ./jobs/update-flake-lock
