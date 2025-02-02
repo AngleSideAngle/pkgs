@@ -1,4 +1,4 @@
-{config, lib}:
+{config, lib, ... }:
 with lib; {
   options.builders = mkOption {
     description = "Collection of builder functions.";
