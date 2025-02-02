@@ -1,4 +1,4 @@
-localFlake:
+{ localFlake, withSystem }:
 { lib, config, pkgs, ... }:
 let
   inherit (localFlake.inputs.nixpak.inputs) nixpkgs;
