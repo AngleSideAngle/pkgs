@@ -21,7 +21,4 @@ in
       ./pkgs
     ];
   };
-  flake = {
-    nixosModules.default = ./pkgs;
-  };
 }
