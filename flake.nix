@@ -18,7 +18,7 @@
     flake-parts.lib.mkFlake { inherit inputs; } ({ withSystem, flake-parts-lib, ... }:
       let
         inherit (flake-parts-lib) importApply;
-        nixosModules.default = importApply ./pkgs { localFlake = self; inherit withSystem; };
+        nixosModules.default = importApply ./module.nix { localFlake = self; inherit withSystem; };
       in
       {
       imports = [
