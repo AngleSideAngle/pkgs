@@ -6,7 +6,6 @@ in
 {
   imports = [
     modules/builders.nix
-    modules/packager.nix
     pkgs
   ];
 
