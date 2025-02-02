@@ -4,6 +4,8 @@ let
   inherit (localFlake.inputs.nixpak.inputs) nixpkgs;
 in
 {
+  imports = [ modules/builders.nix ];
+
   builders.mkNixPakPackage = args: let
     mkNixPak = localFlake.inputs.nixpak.lib.nixpak {
       inherit (nixpkgs) lib;
@@ -17,12 +19,11 @@ in
     network = ./modules/network.nix;
   };
 
-  imports = [
-    ../modules/builders.nix
-    ./browsers/chromium
-    ./gnome/calculator
-    ./gnome/maps
-    ./nonfree/discord.nix
-    ./nonfree/spotify.nix
-  ];
+  # packages = {
+  #   chromium = ./browsers/chromium;
+  #   calculator = ./gnome/calculator;
+  #   maps = ./gnome/maps;
+  #   discord = ./nonfree/discord.nix;
+  #   spotify = ./nonfree/spotify.nix;
+  # };
 }
