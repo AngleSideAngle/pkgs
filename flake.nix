@@ -24,7 +24,7 @@
       ];
     flake.nixosModules.default = { pkgs, ... }: {
       imports = [
-        ./pkgs.nix
+        ./pkgs
         ./modules/builders.nix
       ];
     };
