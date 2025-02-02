@@ -15,18 +15,23 @@
     };
   };
   outputs = { flake-parts, ... }@inputs:
-    flake-parts.lib.mkFlake { inherit inputs; } {
+    flake-parts.lib.mkFlake { inherit inputs; } ({ withSystem, flake-parts-lib }:
+      let
+        inherit (flake-parts-lib) importApply;
+        nixosModules.default = importApply ./pkgs { inherit withSystem; };
+      in
+      {
       imports = [
         inputs.hercules-ci-effects.flakeModule
         ./jobs/update-flake-lock
-        ./part.nix
-        ./modules/builders.nix
-      ];
-    flake.nixosModules.default = { pkgs, ... }: {
-      imports = [
         ./pkgs
-        ./modules/builders.nix
+        # ./part.nix
+        # ./modules/builders.nix
       ];
-    };
-  };
+      systems = [ "x86_64-linux" "aarch64-darwin" ];
+      # perSystem = { pkgs, ... }: {
+      #   packages.default = nixosModules.default
+      # };
+      flake = { inherit nixosModules; };
+  });
 }
