@@ -18,20 +18,22 @@
     flake-parts.lib.mkFlake { inherit inputs; } ({ withSystem, flake-parts-lib }:
       let
         inherit (flake-parts-lib) importApply;
-        nixosModules.default = importApply ./pkgs { localFlake = self; inherit withSystem; };
+        # nixosModules.default = importApply ./pkgs { localFlake = self; inherit withSystem; };
       in
       {
-      imports = [
-        inputs.hercules-ci-effects.flakeModule
-        ./jobs/update-flake-lock
-        ./pkgs
-        # ./part.nix
-        # ./modules/builders.nix
-      ];
-      systems = [ "x86_64-linux" "aarch64-darwin" ];
-      # perSystem = { pkgs, ... }: {
-      #   packages.default = nixosModules.default
-      # };
-      flake = { inherit nixosModules; };
-  });
+        flake.nixosModules.default = importApply ./pkgs { localFlake = self; inherit withSystem; };
+      }
+  #     imports = [
+  #       inputs.hercules-ci-effects.flakeModule
+  #       ./jobs/update-flake-lock
+  #       ./pkgs
+  #       # ./part.nix
+  #       # ./modules/builders.nix
+  #     ];
+  #     systems = [ "x86_64-linux" "aarch64-darwin" ];
+  #     # perSystem = { pkgs, ... }: {
+  #     #   packages.default = nixosModules.default
+  #     # };
+  #     flake = { inherit nixosModules; };
+  # });
 }
